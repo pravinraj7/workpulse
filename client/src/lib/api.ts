@@ -1,16 +1,19 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_URL || "";
+const baseURL = import.meta.env.VITE_API_URL;
 
 export const api = axios.create({
-  baseURL: baseURL || undefined,
-  headers: { "Content-Type": "application/json" },
+  baseURL: baseURL, // must not be empty
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-export function setAuthToken(token: string | null) {
+// Remove TypeScript type if using JS
+export function setAuthToken(token) {
   if (token) {
-    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {
-    delete api.defaults.headers.common.Authorization;
+    delete api.defaults.headers.common["Authorization"];
   }
 }

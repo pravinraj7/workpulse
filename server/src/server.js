@@ -22,6 +22,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userPanelRoutes);
 
+app.get("/", (_req, res) => {
+  res.send("API is running...");
+});
+
 app.get("/api/health", (_, res) => {
   res.json({ ok: true, name: "WorkPulse API" });
 });

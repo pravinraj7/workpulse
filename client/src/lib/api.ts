@@ -10,7 +10,7 @@ export const api = axios.create({
 });
 
 // Remove TypeScript type if using JS
-export function setAuthToken(token) {
+export function setAuthToken(token: string | null)  {
   if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {
